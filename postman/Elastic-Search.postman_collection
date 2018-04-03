@@ -575,6 +575,82 @@
 				"description": "Search-Bool-Should(OR)-Match-Field"
 			},
 			"response": []
+		},
+		{
+			"name": "Search-Filter-Range-Field",
+			"request": {
+				"url": {
+					"raw": "{{ELASTIC_URL}}/arif/_search?pretty",
+					"host": [
+						"{{ELASTIC_URL}}"
+					],
+					"path": [
+						"arif",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":{\n\t\t\"bool\": {\n\t\t\t\"must\": {\n\t\t\t\t\"match_all\": { }\n\t\t\t},\n\t\t\t\"filter\": { \n\t\t        \"range\": {\n\t\t          \"balance\": {\n\t\t            \"gte\": 20000,\n\t\t            \"lte\": 30000\n\t\t          }\n\t\t        }\n\t\t\t}\n\t\t}\n\t}\n}"
+				},
+				"description": "Search-Filter-Range-Field"
+			},
+			"response": []
+		},
+		{
+			"name": "Search-Aggregrate-Field",
+			"request": {
+				"url": {
+					"raw": "{{ELASTIC_URL}}/arif/_search?pretty",
+					"host": [
+						"{{ELASTIC_URL}}"
+					],
+					"path": [
+						"arif",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "pretty",
+							"value": "",
+							"equals": false,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"size\": 0,\n\t\"aggs\": {\n    \"group_by_state\": {\n      \"terms\": {\n        \"field\": \"state\"\n      }\n    }\n  }\n}"
+				},
+				"description": "Search-Aggregrate-Field"
+			},
+			"response": []
 		}
 	]
 }
