@@ -1,5 +1,7 @@
 # Postman Elastic Search Collection
 
+This collections work with elastic search version 2.4
+
 To Setup your Local Environment For ELASTIC_URL
 
 Open Postman

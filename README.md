@@ -3,7 +3,7 @@
 ![ElasticSearch](elastic.png)
 
 
-Elastic Search 101 Examples
+Elastic Search 101 Examples For Beginners
 
 
 ### Elastic Search
@@ -15,8 +15,9 @@ Documents : https://www.elastic.co/guide/en/elasticsearch/reference/6.2/getting-
 
 ### ELK Stack
 
-For ELK Stack you can fork or download [ELK STACK](https://github.com/deviantony/docker-elk) project and up the docker-compose
+For ELK Stack you can fork or download [ELK STACK](https://github.com/deviantony/docker-elk) project 
 
+Go project path and run *docker-compose up* command
 
 ### Postman
 
