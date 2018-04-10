@@ -651,6 +651,97 @@
 				"description": "Search-Aggregrate-Field"
 			},
 			"response": []
+		},
+		{
+			"name": "Re-Index",
+			"request": {
+				"url": "{{ELASTIC_URL}}/_reindex",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"source\": {\n    \"index\": \"arif\"\n  },\n  \"dest\": {\n    \"index\": \"arif_copy\"\n  }\n}"
+				},
+				"description": "Re-Index"
+			},
+			"response": []
+		},
+		{
+			"name": "Mappings-Settings",
+			"request": {
+				"url": "{{ELASTIC_URL}}/arif/twitter",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"mappings\": {\n    \"tweet\": {\n      \"properties\": {\n        \"text\": {\n          \"type\": \"string\",\n          \"term_vector\": \"with_positions_offsets_payloads\",\n          \"store\" : true,\n          \"analyzer\" : \"fulltext_analyzer\"\n         },\n         \"fullname\": {\n          \"type\": \"string\",\n          \"term_vector\": \"with_positions_offsets_payloads\",\n          \"analyzer\" : \"fulltext_analyzer\"\n        }\n      }\n    }\n  },\n  \"settings\" : {\n    \"index\" : {\n      \"number_of_shards\" : 1,\n      \"number_of_replicas\" : 0\n    },\n    \"analysis\": {\n      \"analyzer\": {\n        \"fulltext_analyzer\": {\n          \"type\": \"custom\",\n          \"tokenizer\": \"whitespace\",\n          \"filter\": [\n            \"lowercase\",\n            \"type_as_payload\"\n          ]\n        }\n      }\n    }\n  }\n}"
+				},
+				"description": "Mappings-Settings"
+			},
+			"response": []
+		},
+		{
+			"name": "Find-All-Aliases",
+			"request": {
+				"url": "{{ELASTIC_URL}}/_aliases",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Find-All-Aliases"
+			},
+			"response": []
+		},
+		{
+			"name": "Add-Alias",
+			"request": {
+				"url": "{{ELASTIC_URL}}/_aliases",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"actions\" : [\n\t    { \"add\" : { \"index\" : \"arif\", \"alias\" : \"pehlivan\" } }\n\t]\n}"
+				},
+				"description": "Find-All-Aliases"
+			},
+			"response": []
+		},
+		{
+			"name": "Remove-Alias",
+			"request": {
+				"url": "{{ELASTIC_URL}}/_aliases",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"actions\" : [\n\t    { \"remove\" : { \"index\" : \"arif\", \"alias\" : \"pehlivan\" } }\n\t]\n}"
+				},
+				"description": "Remove-Alias"
+			},
+			"response": []
 		}
 	]
 }
